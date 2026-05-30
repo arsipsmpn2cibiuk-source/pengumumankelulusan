@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pengumuman Kelulusan Kelas 9 Tahun Pelajaran 2025/2026 - SMPN 2 Cibiuk</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #e6f0ff;
+      color: #003366;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      background: linear-gradient(to right, #004080, #6a0dad);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      animation: fadeInTop 1s ease-out;
+    }
+
+    header h3 {
+      margin: 0;
+      padding:0;
+      font-size: 1.5rem;
+    }
+
+    header p {
+      margin: 0.1rem 0 0;
+      font-size: 1rem;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    .form-container {
+    
+      background-color: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      max-width: 500px;
+      width: 80%;
+      text-align: center;
+      animation: zoomIn 0.6s ease-out forwards;
+    }
+
+    .form-container input {
+      width: 80%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+    #cekBtn {
+    background: linear-gradient(to right, #007bff, #6f42c1); /* Biru ke ungu */
+    color: white;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    #cekBtn:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+    }
+
+    .form-container button {
+      padding: 0.75rem 1.5rem;
+      background-color: #0059b3;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .form-container button:hover {
+      background-color: #003d80;
+    }
+
+    .result {
+      /* margin-top: 2rem; */
+      font-size: 1.2rem;
+      font-weight: bold;
+      display: none;
+      padding: 1rem;
+      border-radius: 10px;
+    }
+    .result.success {
+      color: #0a662e;
+      background-color: #d1f7e1;
+      border: 1px solid #0a662e;
+    }
+
+    .result.failed {
+      color: #cc0000;
+      background-color: #ffe6e6;
+      border: 1px solid #cc0000;
+    }
+
+    #info-daftar-ulang {
+      /* margin-top: 2rem; */
+      /* background-color: #eef6ff; */
+      /* border-left: 6px solid #004080; */
+      padding: rem;
+      border-radius: 10px;
+      display: none;
+      text-align: justify;
+      font-size: 0.95rem;
+    }
+    .kontak-info {
+    text-align: center;
+    margin-top:10px;
+    font-size: 1rem;
+    color: #333;
+    line-height: 0.4;
+    }
+
+    .kontak-info a {
+    color: #0077cc;
+    text-decoration: none;
+    }
+
+    .kontak-info a:hover {
+    text-decoration: underline;
+    }
+
+
+    footer {
+      background-color: #004080;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    @keyframes fadeInTop {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+</head>
+<body>
+
+<header>
+  <h3>PENGUMUMAN KELULUSAN SISWA KELAS IX</h3>
+  <h3>SMP NEGERI 2 CIBIUK</h3>
+  <p>Tahun Pelajaran 2025/2026</p>
+</header>
+
+<main>
+    <div class="form-container">
+    <label for="katakucni" style="display:block; margin-bottom: 0.5rem;">Cari berdasarkan NISN atau Nama</label>
+    <input type="text" id="katakucni" placeholder="Contoh: 00223122321" />
+    <button id="cekBtn" onclick="cekKelulusan()">Cek Kelulusan</button>
+
+    <div id="surat" class="surat">
+    <div id="info-daftar-ulang"></div>
+    <div id="hasil" class="result">
+    </div>
+    
+  </div>
+  <div class="kontak-info">
+</div>
+
+</main>
+
+<footer>
+  Made with ❤️ by Agus Sopian. © 2026 
+</footer>
+
+<script>
+  
+    function cekKelulusan() {
+  
+    const input = document.getElementById("katakucni").value.trim().toLowerCase();
+    const hasil = document.getElementById("hasil");
+    const surat = document.getElementById("surat");
+    const info = document.getElementById("info-daftar-ulang");
+    
+ const dataSiswa = [
+    { nisn: "0113319451", nama: "Anggun Lestari", rombel: "IX A", status: "LULUS" },
+    { nisn: "0105936655", nama: "Azmi Nurrahman", rombel: "IX A", status: "LULUS" },
+    { nisn: "0105163881", nama: "Dadar Iskandar", rombel: "IX A", status: "LULUS" },
+    { nisn: "0111188776", nama: "Derick Rahmat Wiguna", rombel: "IX A", status: "LULUS" },
+    { nisn: "0104922760", nama: "Diaz Putra Gunawan", rombel: "IX A", status: "LULUS" },
+    { nisn: "0107165659", nama: "Galih Rizki Pratama", rombel: "IX A", status: "LULUS" },
+    { nisn: "0102349047", nama: "Herul Ajril Irwansyah", rombel: "IX A", status: "LULUS" },
+    { nisn: "0104755961", nama: "Ira Sa'Diyah", rombel: "IX A", status: "LULUS" },
+    { nisn: "0114487376", nama: "Lutpia Azki Rismiati", rombel: "IX A", status: "LULUS" },
+    { nisn: "0103941432", nama: "Muhamad Alfhat", rombel: "IX A", status: "LULUS" },
+    { nisn: "0106018871", nama: "Muhammad Husen Bukhori", rombel: "IX A", status: "LULUS" },
+    { nisn: "0103889044", nama: "Nadini Oktaviani", rombel: "IX A", status: "LULUS" },
+    { nisn: "0108777674", nama: "Neng Siska", rombel: "IX A", status: "LULUS" },
+    { nisn: "0112802424", nama: "Noval Dewi Astria", rombel: "IX A", status: "LULUS" },
+    { nisn: "0101947528", nama: "Rehan Irawan", rombel: "IX A", status: "LULUS" },
+    { nisn: "0103615276", nama: "Renanda Risti", rombel: "IX A", status: "LULUS" },
+    { nisn: "0113162659", nama: "Rizky Chandra Wijaya", rombel: "IX A", status: "LULUS" },
+    { nisn: "0102151874", nama: "Rudiansyah", rombel: "IX A", status: "LULUS" },
+    { nisn: "0108175820", nama: "Sahira Salamatul Jannah", rombel: "IX A", status: "LULUS" },
+    { nisn: "0109964724", nama: "Salmah Maulidina", rombel: "IX A", status: "LULUS" },
+    { nisn: "0106799358", nama: "Shilfa Cahya Andriyani", rombel: "IX A", status: "LULUS" },
+    { nisn: "0118474078", nama: "Sopa Marwati", rombel: "IX A", status: "LULUS" },
+    { nisn: "0107233367", nama: "Wildatun Nuriah", rombel: "IX A", status: "LULUS" },
+    { nisn: "0101790172", nama: "Yogi Wira Saputra", rombel: "IX A", status: "LULUS" },
+
+    { nisn: "0092515750", nama: "Agung Purnama", rombel: "IX B", status: "LULUS" },
+    { nisn: "0107263290", nama: "Albi Ibrohim", rombel: "IX B", status: "LULUS" },
+    { nisn: "0094730449", nama: "Alfi Jaya Mulyana", rombel: "IX B", status: "LULUS" },
+    { nisn: "0101027229", nama: "Alin Rahmawati", rombel: "IX B", status: "LULUS" },
+    { nisn: "0108520966", nama: "Arya Wijaya Kusumah", rombel: "IX B", status: "LULUS" },
+    { nisn: "0102880318", nama: "Ayningrum Anzarwati", rombel: "IX B", status: "LULUS" },
+    { nisn: "0102488507", nama: "Cici Lestari", rombel: "IX B", status: "LULUS" },
+    { nisn: "0111754468", nama: "Fania Nur Ramadani", rombel: "IX B", status: "LULUS" },
+    { nisn: "0107420375", nama: "Jihan", rombel: "IX B", status: "LULUS" },
+    { nisn: "0107988994", nama: "M Huda Mauludin", rombel: "IX B", status: "LULUS" },
+    { nisn: "0104295097", nama: "Meysha Alifah", rombel: "IX B", status: "LULUS" },
+    { nisn: "0118556483", nama: "Muhamad Ajis", rombel: "IX B", status: "LULUS" },
+    { nisn: "0106820287", nama: "Muhamad Irsal", rombel: "IX B", status: "LULUS" },
+    { nisn: "0109980086", nama: "Muhammad Kensilvio Albukhori", rombel: "IX B", status: "LULUS" },
+    { nisn: "0107817978", nama: "Raina Magali Nur Sopian", rombel: "IX B", status: "LULUS" },
+    { nisn: "0109103828", nama: "Reynaldi Putra Dwi Adinda", rombel: "IX B", status: "LULUS" },
+    { nisn: "0109221466", nama: "Rizki Fahmi", rombel: "IX B", status: "LULUS" },
+    { nisn: "0106669102", nama: "Sasqia Nitami Aulia", rombel: "IX B", status: "LULUS" },
+    { nisn: "0105815533", nama: "Shintia Rahma", rombel: "IX B", status: "LULUS" },
+    { nisn: "0098436443", nama: "Solehudin Ramdan", rombel: "IX B", status: "LULUS" },
+    { nisn: "0099457061", nama: "Tita Siti Rabayani", rombel: "IX B", status: "LULUS" },
+    { nisn: "0107341288", nama: "Zahira Prasanti", rombel: "IX B", status: "LULUS" },
+    { nisn: "0111491581", nama: "Zaqi Alpariji", rombel: "IX B", status: "LULUS" },
+
+    { nisn: "0119349945", nama: "Adisty Murnia Haeruni", rombel: "IX C", status: "LULUS" },
+    { nisn: "0109195640", nama: "Agit Muhamad Ramdan", rombel: "IX C", status: "LULUS" },
+    { nisn: "0107643438", nama: "Ajmi Humaira", rombel: "IX C", status: "LULUS" },
+    { nisn: "0118007192", nama: "Alpariz", rombel: "IX C", status: "LULUS" },
+    { nisn: "0111938716", nama: "Bima Septo Nugraha", rombel: "IX C", status: "LULUS" },
+    { nisn: "0104574208", nama: "Didi Saparudin", rombel: "IX C", status: "LULUS" },
+    { nisn: "0109074386", nama: "Eli Ermawati", rombel: "IX C", status: "LULUS" },
+    { nisn: "0115440007", nama: "Kaira Fridayani Anwar", rombel: "IX C", status: "LULUS" },
+    { nisn: "0109521479", nama: "Marisa", rombel: "IX C", status: "LULUS" },
+    { nisn: "0107754512", nama: "Maulana Jalaludin Rummi", rombel: "IX C", status: "LULUS" },
+    { nisn: "0105938237", nama: "Meila Rahayu", rombel: "IX C", status: "LULUS" },
+    { nisn: "0103605347", nama: "Meta Sagita", rombel: "IX C", status: "LULUS" },
+    { nisn: "0116659773", nama: "Muhamad Raihandi Kurniawan", rombel: "IX C", status: "LULUS" },
+    { nisn: "0101016278", nama: "Muhammad Nizar", rombel: "IX C", status: "LULUS" },
+    { nisn: "0109157981", nama: "Muhammad Rif'at Kevin Ardiyanto", rombel: "IX C", status: "LULUS" },
+    { nisn: "0101481868", nama: "Mutiara Sinta", rombel: "IX C", status: "LULUS" },
+    { nisn: "0116862711", nama: "Novita Triani", rombel: "IX C", status: "LULUS" },
+    { nisn: "0109749680", nama: "Payvi Nuraeni", rombel: "IX C", status: "LULUS" },
+    { nisn: "0107067823", nama: "Pirni Bunga Citra Lestari", rombel: "IX C", status: "LULUS" },
+    { nisn: "0107760453", nama: "Radja Muhammad Faathir Al-Akbar", rombel: "IX C", status: "LULUS" },
+    { nisn: "0104437705", nama: "Rifky Fabian Jaya", rombel: "IX C", status: "LULUS" },
+    { nisn: "0108099424", nama: "Riri Fitri", rombel: "IX C", status: "LULUS" },
+    { nisn: "0108342729", nama: "Rizki Pratama", rombel: "IX C", status: "LULUS" },
+    { nisn: "0103731137", nama: "Zaenal Aripin", rombel: "IX C", status: "LULUS" },
+    { nisn: "0102114705", nama: "Zaskia Putri Parella", rombel: "IX C", status: "LULUS" },
+
+    { nisn: "0109212368", nama: "Adiansah", rombel: "IX D", status: "LULUS" },
+    { nisn: "0107600980", nama: "Alpina Triani", rombel: "IX D", status: "LULUS" },
+    { nisn: "0101864806", nama: "Andre Ahmad Ripai", rombel: "IX D", status: "LULUS" },
+    { nisn: "0119766383", nama: "Arnal Yanuar Maolana", rombel: "IX D", status: "LULUS" },
+    { nisn: "0117786824", nama: "Avinsya Aurelia Adzani", rombel: "IX D", status: "LULUS" },
+    { nisn: "0114873666", nama: "Citra Salsabila", rombel: "IX D", status: "LULUS" },
+    { nisn: "0114741054", nama: "Elma Nurfadilah", rombel: "IX D", status: "LULUS" },
+    { nisn: "0088108386", nama: "Erliana Anandita Juniarahman", rombel: "IX D", status: "LULUS" },
+    { nisn: "0103450191", nama: "Evita Apriliani", rombel: "IX D", status: "LULUS" },
+    { nisn: "0101452144", nama: "Fachriza Eza Al Ghifari", rombel: "IX D", status: "LULUS" },
+    { nisn: "0106876881", nama: "Ghreldyv Daka Besya Misga", rombel: "IX D", status: "LULUS" },
+    { nisn: "0112343975", nama: "Helma Liana Husni", rombel: "IX D", status: "LULUS" },
+    { nisn: "0119191507", nama: "Hendrik Maulana", rombel: "IX D", status: "LULUS" },
+    { nisn: "0106108846", nama: "Mandala Putra", rombel: "IX D", status: "LULUS" },
+    { nisn: "0102917097", nama: "Mohamad Rifki Hamdani", rombel: "IX D", status: "LULUS" },
+    { nisn: "0101633441", nama: "Muhamad Raffi", rombel: "IX D", status: "LULUS" },
+    { nisn: "0108980107", nama: "Muhamad Sastra Yuda", rombel: "IX D", status: "LULUS" },
+    { nisn: "0119595249", nama: "Nadina Oktaviana", rombel: "IX D", status: "LULUS" },
+    { nisn: "0102562972", nama: "Neng Tita Wulan Sari", rombel: "IX D", status: "LULUS" },
+    { nisn: "0112130919", nama: "Pahri Raihan", rombel: "IX D", status: "LULUS" },
+    { nisn: "0104510681", nama: "Regita Widia Mulya", rombel: "IX D", status: "LULUS" },
+    { nisn: "0105536810", nama: "Risya Rosanti", rombel: "IX D", status: "LULUS" },
+    { nisn: "0114199379", nama: "Sabian Zahir Rabbani", rombel: "IX D", status: "LULUS" },
+    { nisn: "0115568768", nama: "Sansan Abdul Mukti", rombel: "IX D", status: "LULUS" },
+    { nisn: "0107056226", nama: "Yayang Agustira", rombel: "IX D", status: "LULUS" }
+  ];
+    const siswa = dataSiswa.find(item =>
+        item.nisn === input || item.nama.toLowerCase()===input
+     );
+
+    const targetDate = new Date("2026-05-02T14:00:00+07:00");
+    const currentDate = new Date();
+    if (currentDate >= targetDate) {
+      console.log("Waktu sudah lewat/tepat. Tampilkan data!");
+      if (siswa) {
+      hasil.style.display = "block";
+      surat.style.display = "block";
+      hasil.classList.remove("success", "failed");
+      info.style.display = "none";
+        if (siswa.status === "LULUS") {
+          hasil.classList.add("success");
+          hasil.innerHTML = `
+          
+                  <div style="margin: 0.1rem 0 0.1rem; font-size: 1.5rem;line-height:0.9">${siswa.nama}</div>
+                  <div style="margin-top: 0.4rem; font-size: 1.1rem;">
+                      <strong>Kelas: ${siswa.rombel}</strong>
+                  </div>
+                  <div style="margin: 0; font-size: 1rem;">
+                  
+                    </div>
+                    <div style="margin-top: 0.4rem; font-size: 1rem;">
+                        dinyatakan
+                      </div>
+                    <div style="margin-top: 0.4rem; font-size: 2rem;">
+                      <strong>LULUS</strong>
+                  </div>
+                  
+                  `;
+          semburkanKonfeti();
+
+
+          info.style.display = "block";
+          info.innerHTML = `
+            <p>Berdasarkan Keputusan Kepala SMP Negeri 2 Cibiuk, Nomor DK.02.02/104/SMP/2026 tanggal 2 Juni 2026 tentang Penetapan Kelulusan Siswa Kelas 9 Tahun Pelajaran 2025/2026, siswa dibawah ini:</p>
+            
+          `;
+        } else {
+          hasil.classList.add("failed");
+          hasil.innerHTML = `❌ ${siswa.nama} dinyatakan <strong>TIDAK LULUS</strong>. </br>Tetap semangat dan terus berusaha! 💪`;
+        }
+      } else {
+        hasil.style.display = "block";
+        hasil.className = "result failed";
+        hasil.innerHTML = `❌ Data tidak ditemukan. Periksa kembali NISN atau Nama yang dimasukkan.`;
+        info.style.display = "none";
+      }
+    } else {
+        hasil.style.display = "block";
+        hasil.className = "result failed";
+        hasil.innerHTML = `❌ Belum waktunya. Kembali lagi tanggal 2 Juni 2026 Pukul 14.00`;
+        info.style.display = "none";
+        console.log("Belum waktunya. Data disembunyikan.");
+    }    
+    
+   
+    
+    }
+</script>
+
+</body>
+</html>
+<script>
+  // Fungsi menyemburkan konfeti ke seluruh halaman
+  function semburkanKonfeti() {
+    var duration = 3 * 1000;
+    var animationEnd = Date.now() + duration;
+    var defaults = { startVelocity: 45, spread: 360, ticks: 90, zIndex: 999,  scalar: 1.6  };
+
+    function randomInRange(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    var interval = setInterval(function () {
+      var timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      var particleCount = 100 * (timeLeft / duration);
+      // menyembur dari kiri dan kanan
+      confetti(Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 }
+      }));
+      confetti(Object.assign({}, defaults, {
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 }
+      }));
+    }, 250);
+  }
+
+  
+</script>
